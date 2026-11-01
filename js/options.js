@@ -19,6 +19,26 @@ h2El.addEventListener('click', function (e) {
 -----------*/
 const fillOptions = document.getElementsByClassName('fill');
 const strokeOptions = document.getElementsByClassName('stroke');
+const optionsSection = document.querySelector('#options');
+let stateBeforeOptions = currentState;
+let optionsInputActive = false;
+
+optionsSection.addEventListener('focusin', () => {
+    if (!optionsInputActive) {
+        stateBeforeOptions = currentState;
+        currentState = 'pause';
+        optionsInputActive = true;
+    }
+});
+
+optionsSection.addEventListener('focusout', () => {
+    setTimeout(() => {
+        if (!optionsSection.contains(document.activeElement)) {
+            currentState = stateBeforeOptions;
+            optionsInputActive = false;
+        }
+    }, 0);
+});
 
 for (let i = 0; i < fillOptions.length; i++) {
     const updateFill = (fillEvent) => {

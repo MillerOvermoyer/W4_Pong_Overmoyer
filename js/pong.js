@@ -59,6 +59,17 @@ states[`pause`] = function(){
     o.forEach(function (i){
         i.draw()
     })
+
+    ctx.save();
+    ctx.fillStyle = `rgba(0, 0, 0, 0.6)`;
+    ctx.fillRect(0, 0, c.width, c.height);
+    ctx.fillStyle = `white`;
+    ctx.font = `48px Arial`;
+    ctx.textAlign = `center`;
+    ctx.textBaseline = `middle`;
+    ctx.fillText(`PAUSED`, c.width / 2, c.height / 2);
+    ctx.restore();
+
     if(keys[`Escape`])
     {
         currentState =`game`
@@ -154,7 +165,6 @@ states[`game`] = function()
     })
 
 }
-
 
 
 
